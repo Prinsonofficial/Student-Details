@@ -1,11 +1,12 @@
-const studentmodel = require('../models/studmodel.js')
+const studentmodel = require('../models/Student.js')
 
-//Show all student details
-const list = (req, res, next) => {
-    studentmodel.find()
+//Get the result of the student by passing id
+const result = (req, res, next) => {
+    studentID = req.body.id
+    studentmodel.findOne({"id":studentID})
     .then(response => {
         res.json({
-            response
+            message: response.result
         })
     })
     .catch(error => {
@@ -16,7 +17,7 @@ const list = (req, res, next) => {
 }
 
 //Find the students who passed or failed
-const show = (req, res, next) => {
+const details = (req, res, next) => {
     
     let Result = req.body.result
     
@@ -35,8 +36,7 @@ const show = (req, res, next) => {
 
 
 //Add a student to database
-const store = (req, res, next) => {
-    console.log(req)
+const upload = (req, res, next) => {
     sum = req.body.mark1 + req.body.mark2 + req.body.mark3
     if ( sum / 3 >= 40 ){
         result = "passed"
@@ -68,22 +68,7 @@ const store = (req, res, next) => {
     })
 }
 
-//delete a student from the db
-const destroy = (req, res, next) => {
-    let studentID = req.body.id
-    studentmodel.findOne({"id":studentID})
-    .then(() => {
-        res.json({
-            message: 'Student details deleted successfully'
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: 'An error occured!'
-        })
-    })
-}
 
 module.exports = {
-    list, show, store, destroy
+    result, details, upload
 }

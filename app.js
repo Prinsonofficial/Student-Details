@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
-const StudentRoute = require('./routes/student')
+const StudentRoute = require('./routes/StudentRoutes')
 mongoose.connect('mongodb://localhost:27017/studentdetails', {useNewUrlParser: true, useUnifiedTopology: true}) 
 const db = mongoose.connection
 
