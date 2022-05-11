@@ -38,13 +38,14 @@ const details = (req, res, next) => {
 //Add a student to database
 const upload = (req, res, next) => {
     sum = req.body.mark1 + req.body.mark2 + req.body.mark3
+    var result
     if ( sum / 3 >= 40 ){
         result = "passed"
     }
     else{
         result = "failed"
     }
-
+    
     let student = new studentmodel({
         id: req.body.id,
         name: req.body.name,

@@ -4,7 +4,7 @@ const router = express.Router()
 
 const Studentcontrl = require('../controllers/StudentController') 
 
-router.post('/',Studentcontrl.result)
+router.post('/result',Studentcontrl.result)
 router.post('/show',Studentcontrl.details)
 router.post('/upload',Studentcontrl.upload)
 
